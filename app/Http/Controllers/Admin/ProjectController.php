@@ -60,7 +60,7 @@ class ProjectController extends Controller
         
         $new_project = Project::create($data_projects);
 
-        return to_route('admin.projects.index', $new_project);
+        return to_route('admin.projects.show', $new_project);
     }
 
     /**
@@ -88,7 +88,25 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $form_data = $request->validated();
+
+        $base_slug = Str::slug($form_data['title']);
+        $slug = $base_slug;
+        $n = 0;
+
+        do {
+            // SELECT * FROM `posts` WHERE `slug` = ?
+            $find = Project::where('slug', $slug)->first(); // null | Post
+
+            if ($find !== null) {
+                $n++;
+                $slug = $base_slug . '-' . $n;
+            }
+        } while ($find !== null);
+
+        $form_data['slug'] = $slug;
+
         $project->update($form_data);
+
 
         // dd($request->all());
         return to_route('admin.projects.show', $project);

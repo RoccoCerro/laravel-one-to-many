@@ -3,7 +3,7 @@
 @section('content')
 <section class="create-projects">
   <div class="container">
-    <h2 class="fs-2">Add new Projects</h2>
+    <h2 class="fs-2">Edit Projects</h2>
   </div>
   <div class="container">
     <form action="{{ route('admin.projects.update', $project) }}" method="POST">
@@ -42,13 +42,13 @@
     </form>
 
     @if ($errors->any())
-      <p class="">
+      <div class="alert alert-danger mt-3">
         <ul>
           @foreach ($errors->all() as $error )
           <li class="alert alert-danger">{{ $error }}</li>
           @endforeach
         </ul>
-      </p>
+      </div>
     @endif
 
   </div>
