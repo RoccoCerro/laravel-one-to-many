@@ -24,6 +24,7 @@ class StoreProjectRequest extends FormRequest
         return [
             'title' =>'required|string',
             'content' => 'nullable|string',
+            'type_id' => 'nullable|exists:types,id'
         ];
     }
 }
