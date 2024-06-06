@@ -77,7 +77,27 @@ class TypeController extends Controller
      */
     public function update(UpdateTypeRequest $request, Type $type)
     {
-        //
+        $form_data = $request->validated();
+
+        $base_slug = Str::slug($form_data['name']);
+        $slug = $base_slug;
+        $n = 0;
+        
+        do {
+            $find = Type::where('slug', $slug)->first();
+
+            if( $find !== null) {
+                $n++;
+                $slug = $base_slug . '-' . $n;
+            }
+        } while( $find !== null );
+
+        $form_data['slug'] = $slug;
+        
+        $type->update($form_data);
+
+        return to_route('admin.types.show', $type);
+
     }
 
     /**
@@ -85,6 +105,8 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+
+        return to_route('admin.types.index');
     }
 }

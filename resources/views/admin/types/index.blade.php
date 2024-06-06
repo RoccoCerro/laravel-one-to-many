@@ -14,10 +14,25 @@
   <div class="container">
     <div class="row">
       @foreach ($types as $type)
-        <div class="col">
+        <div class="col-3 p-2">
           <div class="card">
             <div class="card-header">
               <p><a href="{{ route('admin.types.show', $type) }}">{{ $type->name }}</a></p>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-auto"><a class="text-decoration-none btn btn-secondary" href="{{ route('admin.types.edit', $type) }}">Edit</a></div>
+                <div class="col-auto">
+                  <form action="{{ route('admin.types.destroy', $type) }}" method="POST">
+                    
+                    @csrf
+                    @method('DELETE')
+          
+                    <button class="btn btn-danger link-danger text-white">Elimina</button>
+                  
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </div>
