@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Type;
 use App\Http\Requests\StoreTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
+use Illuminate\Support\Str;
 
 class TypeController extends Controller
 {
@@ -32,7 +33,27 @@ class TypeController extends Controller
      */
     public function store(StoreTypeRequest $request)
     {
-        //
+        $data_types = $request->validated();
+
+        $base_slug = Str::slug($data_types['name']);
+        $slug = $base_slug;
+        $n = 0;
+        
+        do {
+            $find = Type::where('slug', $slug)->first();
+
+            if( $find !== null) {
+                $n++;
+                $slug = $base_slug . '-' . $n;
+            }
+        } while( $find !== null );
+
+        $data_types['slug'] = $slug;
+        
+        $new_type = Type::create($data_types);
+
+        return to_route('admin.types.show', $new_type);
+
     }
 
     /**
