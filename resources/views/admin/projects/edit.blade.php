@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="create-projects">
+<section class="create-projects p-5">
   <div class="container">
     <h2 class="fs-2">Edit Projects</h2>
   </div>

@@ -2,16 +2,21 @@
 
 @section('content')
 
-  <section>
+  <section class="show-project p-5">
     <div class="container">
       <h1>{{ $project->title }}</h1>
-      <p>{{ $project->slug }}</p>
+      <p><strong>Slug: </strong> {{ $project->slug }}</p>
       <p>
-        {{ $project->type ? $project->type->name : 'Nessuna Categoria'}}
+        <strong>Tipo: </strong>
+        {{ $project->type ? $project->type->name : 'Nessun tipo'}}
       </p>
-    </div>
-    <div class="container">
-      {!! $project->content !!}
+      <div>
+        <strong>Contenuto: </strong>
+        <p>{!! $project->content !!}</p>
+      </div>
+      <div class="project-img">
+        <img src="{{ $project->img_url }}" alt="">
+      </div>
     </div>
   </section>
 @endsection

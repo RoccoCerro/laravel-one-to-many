@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="create-projects">
+<section class="create-projects p-5">
   <div class="container">
     <h2 class="fs-2">Add new Projects</h2>
   </div>
@@ -31,7 +31,7 @@
         <input type="text" name="content" class="form-control" id="content" placeholder="insert Content..">
       </div>
 
-      <button class="btn btn-primary">Add Projects</button>
+      <button class="btn btn-dark">Add Projects</button>
 
     </form>
 
