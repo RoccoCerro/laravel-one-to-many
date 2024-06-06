@@ -11,25 +11,33 @@
 
   <div class="row">
     @foreach ($projects as $project)
-    <div class="col-12 p-2">
-      <div class="card">
-        <img src="..." class="card-img-top" alt="...">
+    <div class="col-3 p-2">
+      <div class="card h-100">
+        <img src="{{ $project->img_url }}" class="card-img-top w-100" alt="...">
         <div class="card-body">
-          <h5 class="card-title">{{ $project->title }}</h5>
-          <p class="card-text">{{ $project->content }}</p>
-          <div class="my-card-btn row">
+          <div class="row flex-column justify-content-between h-100 gap-2">
             <div class="col-auto">
-              <a class="btn btn-text-decoration-none text-white btn-secondary" href="{{ route('admin.projects.edit', $project) }}">modifica</a>
+              <h5 class="card-title"><a href="{{ route('admin.projects.show', $project) }}">{{ $project->title }}</a></h5>
             </div>
             <div class="col-auto">
-              <form action="{{ route('admin.projects.destroy',$project) }}" method="POST">
-    
-                @csrf
-                @method('DELETE')
-    
-                <button class="btn btn-danger link-danger text-white">Elimina</button>
-    
-              </form>
+              <p class="card-text">{{ $project->content !== null ? substr($project->content, 0, 50).'...' : '' }}</p>
+            </div>
+            <div class="col-auto">
+              <div class="my-card-btn row">
+                <div class="col-auto">
+                  <a class="btn btn-text-decoration-none text-white btn-secondary" href="{{ route('admin.projects.edit', $project) }}">modifica</a>
+                </div>
+                <div class="col-auto">
+                  <form action="{{ route('admin.projects.destroy', $project) }}" method="POST">
+        
+                    @csrf
+                    @method('DELETE')
+        
+                    <button class="btn btn-danger link-danger text-white">Elimina</button>
+        
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </div>

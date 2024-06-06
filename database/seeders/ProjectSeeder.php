@@ -27,6 +27,8 @@ class ProjectSeeder extends Seeder
             $project->slug = Str::slug($title);
             $project->content = $faker->optional()->text(500);
             $project->type_id = $faker->optional()->randomElement($ids);
+            $randomNumber = rand(1, 1000);
+            $project->img_url = "https://picsum.photos/id/{$randomNumber}/2000/3000";
             $project->save();
         }
     }
