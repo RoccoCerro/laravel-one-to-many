@@ -57,7 +57,10 @@ class ProjectController extends Controller
         } while ($find !== null);
 
         $data_projects['slug'] = $slug;
-        
+
+        $randomNumber = rand(1, 1000);
+        $data_projects['img_url'] = "https://picsum.photos/id/{$randomNumber}/2000/3000";
+
         $new_project = Project::create($data_projects);
 
         return to_route('admin.projects.show', $new_project);
