@@ -4,10 +4,10 @@
   <div class="container p-5">
     <div class="row justify-content-between">
       <div class="col-auto">
-        <h1>Tipo</h1>
+        <h1>Types</h1>
       </div>
       <div class="col-auto">
-        <a class="btn btn-dark" href="{{ route('admin.types.create') }}">Nuovo tipo</a>
+        <a class="btn btn-dark" href="{{ route('admin.types.create') }}">New type</a>
       </div>
     </div>
   </div>
@@ -28,7 +28,7 @@
                     @csrf
                     @method('DELETE')
           
-                    <button class="btn btn-danger link-danger text-white">Elimina</button>
+                    <button class="btn btn-danger link-danger text-white">Delete</button>
                   
                   </form>
                 </div>
