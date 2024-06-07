@@ -28,13 +28,18 @@
                   <a class="btn btn-text-decoration-none text-white btn-secondary" href="{{ route('admin.projects.edit', $project) }}">modifica</a>
                 </div>
                 <div class="col-auto">
-                  <form action="{{ route('admin.projects.destroy', $project) }}" method="POST">
+                  <form class="project-destroy-form" action="{{ route('admin.projects.destroy', $project) }}" method="POST">
         
                     @csrf
                     @method('DELETE')
         
                     <button class="btn btn-danger link-danger text-white">Elimina</button>
-        
+                    
+                    <div class="d-none modal-delete" >
+                      <h5>Sei sicuro di voler eliminare?</h5>
+                      <button class="btn-yes">si</button>
+                      <button class="btn-no">no</button>
+                    </div>
                   </form>
                 </div>
               </div>
