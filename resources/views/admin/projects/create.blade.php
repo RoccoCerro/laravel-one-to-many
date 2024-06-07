@@ -17,6 +17,11 @@
       </div>
 
       <div class="mb-3">
+        <label for="img_url" class="form-label">img_url</label>
+        <input type="text" name="img_url" class="form-control" id="img_url" placeholder="insert img_url..">
+      </div>
+
+      <div class="mb-3">
         <label for="type_id" class="form-label">Titolo</label>
         <select class="form-control" name="type_id" id="type_id">
           <option value="">-- Seleziona Categoria --</option>

@@ -58,8 +58,11 @@ class ProjectController extends Controller
 
         $data_projects['slug'] = $slug;
 
-        $randomNumber = rand(1, 1000);
-        $data_projects['img_url'] = "https://picsum.photos/id/{$randomNumber}/2000/3000";
+        if($data_projects['img_url'] === null){
+            
+            $randomNumber = rand(1, 1000);
+            $data_projects['img_url'] = "https://picsum.photos/id/{$randomNumber}/2000/3000";
+        }
 
         $new_project = Project::create($data_projects);
 
